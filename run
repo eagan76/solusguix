@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Step 1: Download the Guix installer script
+echo "Downloading Guix installer script..."
+wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh -O guix-install.sh
+chmod +x guix-install.sh
+
+# Step 2: Run the Guix installer script
+echo "Running the Guix installer script..."
+sudo ./guix-install.sh
+
+# Step 3: Set up Guix environment variables
+echo "Configuring Guix environment variables..."
+echo 'export PATH="$HOME/.config/guix/current/bin:$PATH"' >> ~/.bashrc
+echo 'source "$HOME/.guix-profile/etc/profile"' >> ~/.bashrc
+source ~/.bashrc
+
+# Step 4: Start the Guix daemon and ensure it runs on startup
+echo "Starting and enabling the Guix daemon..."
+sudo guix-daemon --build-users-group=guixbuild &
+
+echo "Installation and configuration of Guix complete. Please restart your terminal to finalize environment variables."
