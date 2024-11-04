@@ -19,4 +19,8 @@ source ~/.bashrc
 echo "Starting and enabling the Guix daemon..."
 sudo guix-daemon --build-users-group=guixbuild &
 
-echo "Installation and configuration of Guix complete. Please restart your terminal to finalize environment variables."
+# Step 5: Disable GNOME animations for snappier performance
+echo "Disabling GNOME animations for a snappier experience..."
+gsettings set org.gnome.desktop.interface enable-animations false
+
+echo "Installation and configuration of Guix complete, with animations disabled. Please restart your terminal to finalize environment variables."
